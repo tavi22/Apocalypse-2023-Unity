@@ -41,7 +41,7 @@ public class CameraController : MonoBehaviour
     void HandleZoomInOut()
     {
         float fov = Camera.main.fieldOfView;
-        fov += Input.GetAxis("Mouse ScrollWheel") * zoomSensitivity;
+        fov += Input.GetAxis("Mouse ScrollWheel") * zoomSensitivity * -1;
         fov = Mathf.Clamp(fov, minFOV, maxFOV);
         Camera.main.fieldOfView = fov;
     }
