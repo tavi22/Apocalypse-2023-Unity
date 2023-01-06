@@ -34,7 +34,7 @@ Ne dorim implementarea unui joc de tip top-down shooter, in format 3D, asemanato
 
 ## Caracter principal
 
-Intreaga actiune a jocului se desfasoara in jurul caracterului principal, reprezentat de o femeie super-erou. Misiunea acesteia este sa protejeze ce a mai ramas din orasul lovit de apocalipsa si sa doboare inamicii care o urmaresc pentru a o elimina si a prelua controlul total al lumii. Eroina noastra este pregatita de lupta, fiind dotata cu armura si pistol ce folosete gloante suficient de puternice pentru a distruge inamicii.
+Intreaga actiune a jocului se desfasoara in jurul caracterului principal, reprezentat de o femeie super-erou. Misiunea acesteia este sa protejeze ce a mai ramas din orasul lovit de apocalipsa si sa doboare inamicii care o urmaresc pentru a o elimina si a prelua controlul total al lumii. Eroina noastra este pregatita de lupta, fiind dotata cu armura si pistol ce foloseste gloante suficient de puternice pentru a distruge inamicii si a recapata puterea asupra orasului.
 
 ## Tipuri de inamici
 
