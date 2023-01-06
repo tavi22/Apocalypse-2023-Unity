@@ -15,12 +15,12 @@ public class CameraController : MonoBehaviour
     float movementSpeed = 5f;       //camera movement speed
 
     [SerializeField]
-    [Range(10f, 30f)]
-    float minFOV = 25f;             //max zoom in
+    [Range(60f, 70f)]
+    float minFOV = 60f;             //max zoom in
 
     [SerializeField]
-    [Range(70f, 90f)]
-    float maxFOV = 75f;             //max zoom out
+    [Range(90f, 110f)]
+    float maxFOV = 100f;             //max zoom out
 
     [SerializeField]
     float zoomSensitivity = 10f;    //scroll sensitivity for zooming
