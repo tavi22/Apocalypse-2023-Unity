@@ -7,15 +7,13 @@ public class MainMenuScript : MonoBehaviour
 {
 
     private static string PlayScene = "SampleScene";
+    
     public void PlayGame()
     {
         SceneManager.LoadScene(PlayScene);
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
 
-
-
-        public void QuitGame()
+    public void QuitGame()
     {
         Debug.Log("Quit");
         Application.Quit();

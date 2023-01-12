@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,11 @@ public class SettingsMenuScript : MonoBehaviour
     public Toggle fullscreenToggle;
     public Slider masterVolumeSlider;
     public Slider musicVolumeSlider;
+    [SerializeField] GameObject panel;
+    [SerializeField] GameObject highscoreUIElementPrefab;
+    [SerializeField] Transform elementWrapper;
+    List<GameObject> uiElements = new List<GameObject>();
+
     void Start()
     {
         resolutions = Screen.resolutions;
@@ -105,4 +111,14 @@ public class SettingsMenuScript : MonoBehaviour
         
     }
 
+    public void ShowPanel()
+    {
+        panel.SetActive(true);
+    }
+
+    public void ClosePanel()
+    {
+        panel.SetActive(false);
+    }
+    
 }
