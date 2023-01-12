@@ -13,6 +13,8 @@ TagManager:
   - PlayerBullet
   - EnemyBullet
   - Settings
+  - Score
+  - GameOver
   layers:
   - Default
   - TransparentFX

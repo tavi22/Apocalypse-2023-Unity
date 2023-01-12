@@ -15,18 +15,24 @@ public class Enemy1Script : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     public HealthBar healthBar;
-
+    private ScoreManager playerScoreManager;
+    public Canvas playerCanvas;
+    private bool pointAdded = false;
 
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        //playerScoreManager = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreManager>();
+        playerScoreManager = playerCanvas.GetComponent<ScoreManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        healthBar.SetHealth(currentHealth);
+
         MoveEnemy();
         distanceToPlayer = Vector3.Distance(transform.position, target.position);
         
@@ -34,6 +40,12 @@ public class Enemy1Script : MonoBehaviour
         if (currentHealth <= 0) 
         {
             movementSpeed = 0.0f;
+            if (pointAdded == false)
+            {
+                playerScoreManager.AddPoint();
+                pointAdded = true; 
+            }
+            
         }
     }
 

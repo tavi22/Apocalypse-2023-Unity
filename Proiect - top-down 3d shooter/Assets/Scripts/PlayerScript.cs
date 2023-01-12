@@ -46,6 +46,8 @@ public class PlayerScript : MonoBehaviour
     //public TextMeshProUGUI ammoLeftText;
     public TextMeshProUGUI ammoText;
 
+    
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -62,8 +64,6 @@ public class PlayerScript : MonoBehaviour
         //ammoInGunText.text = noOfBullets.ToString();
         //ammoLeftText.text = noOfBulletsInRound.ToString();
         ammoText.text = noOfBulletsInRound.ToString() + "/" + noOfBullets.ToString();
-        
-
 
     }
 
@@ -82,7 +82,14 @@ public class PlayerScript : MonoBehaviour
         //ammoLeftText.text = noOfBulletsInRound.ToString();
         ammoText.text = noOfBulletsInRound.ToString() + "/" + noOfBullets.ToString();
 
+       
 
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            TakeDamage(20);
+        }
+
+        healthBar.SetHealth(currentHealth);
     }
 
     void FixedUpdate()

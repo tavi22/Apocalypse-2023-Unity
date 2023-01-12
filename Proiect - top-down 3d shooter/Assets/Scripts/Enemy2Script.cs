@@ -18,30 +18,42 @@ public class Enemy2Script : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     public HealthBar healthBar;
+    private ScoreManager playerScoreManager;
+    public Canvas playerCanvas;
+    private bool pointAdded = false;
 
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
-
+        playerScoreManager = playerCanvas.GetComponent<ScoreManager>();
+        //daca se mai spawneaza cand e pauza poate sa ii dezactivez pe inamicii dupa care se copiaza sau pe toti dupa tag
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        healthBar.SetHealth(currentHealth);
+
         distanceToPlayer = Vector3.Distance(transform.position, target.position);
         // if (distanceToPlayer < 10.0f)
         // {
             EnemyGunScript.Instance.Shoot();                // bug la shooting
         // }
-        MoveEnemy();
+        MoveEnemy();    
 
 
         // daca inamicul a murit, ii oprim miscarea (ca sa nu mai vina spre player in timpul animatiei de moarte)
         if (currentHealth <= 0) 
         {
             movementSpeed = 0.0f;
+            if (pointAdded == false)
+            {
+                playerScoreManager.AddPoint();
+                pointAdded = true;
+            }
         }
     }
 

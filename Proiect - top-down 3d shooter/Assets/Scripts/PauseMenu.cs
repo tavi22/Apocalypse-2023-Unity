@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class PauseMenu : MonoBehaviour
 {
     public static bool gameIsPaused;
     public GameObject pauseMenuUI;
     public static string menu = "Menu";
+    public TextMeshProUGUI highScoreText;
+    public GameObject gameOverUI;
 
     void Start()
     {
@@ -19,13 +22,14 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !gameOverUI.activeSelf)
         {
             gameIsPaused = !gameIsPaused;
             PauseGame();
         }
 
-        Console.Write(gameIsPaused);
+        //Debug.Log("highscore " + PlayerPrefs.GetInt("highscore").ToString());
+        highScoreText.text = PlayerPrefs.GetInt("highscore").ToString(); 
 
     }
 
