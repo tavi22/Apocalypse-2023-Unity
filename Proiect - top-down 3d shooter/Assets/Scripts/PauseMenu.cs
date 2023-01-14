@@ -18,6 +18,7 @@ public class PauseMenu : MonoBehaviour
     {
         gameIsPaused = false;
         pauseMenuUI.SetActive(false);
+        
     }
 
     void Update()
@@ -25,6 +26,8 @@ public class PauseMenu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && !gameOverUI.activeSelf)
         {
             gameIsPaused = !gameIsPaused;
+            
+
             PauseGame();
         }
 
@@ -37,18 +40,17 @@ public class PauseMenu : MonoBehaviour
 
     void PauseGame()
     {
-        //only pausing actions that scale with time, music or others will not be pause, will add those in later versions
         if (gameIsPaused)
         {
             Time.timeScale = 0f;
             pauseMenuUI.SetActive(true);
-
+           
         }
         else
         {
             Time.timeScale = 1;
             pauseMenuUI.SetActive(false);
-            //
+            
         }
     }
     public void Resume()
