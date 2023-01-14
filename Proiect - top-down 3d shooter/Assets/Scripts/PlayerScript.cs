@@ -214,4 +214,14 @@ public class PlayerScript : MonoBehaviour
         healthBar.SetHealth(currentHealth);
     }
 
+    public void addBullets(int num)
+    {
+        noOfBullets += num;
+    }
+
+    public void addHealth(int num)
+    {
+        currentHealth = Mathf.Min(100, currentHealth + num);
+    }
+
 }
