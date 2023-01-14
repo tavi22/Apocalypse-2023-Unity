@@ -1,97 +1,254 @@
 fileFormatVersion: 2
 guid: 40f48f3ceb884144c868058e4d333ca7
-timeCreated: 1553412592
-licenseType: Store
 ModelImporter:
-  serializedVersion: 19
-  fileIDToRecycleName:
-    100000: //RootNode
-    100002: House00
-    100004: House01
-    100006: House02
-    100008: House03
-    100010: House04
-    100012: House05
-    100014: House06
-    100016: House07
-    100018: House08
-    100020: House09
-    100022: House10
-    100024: House11
-    100026: House12
-    100028: House13
-    100030: House14
-    400000: //RootNode
-    400002: House00
-    400004: House01
-    400006: House02
-    400008: House03
-    400010: House04
-    400012: House05
-    400014: House06
-    400016: House07
-    400018: House08
-    400020: House09
-    400022: House10
-    400024: House11
-    400026: House12
-    400028: House13
-    400030: House14
-    2300000: House00
-    2300002: House01
-    2300004: House02
-    2300006: House03
-    2300008: House04
-    2300010: House05
-    2300012: House06
-    2300014: House07
-    2300016: House08
-    2300018: House09
-    2300020: House10
-    2300022: House11
-    2300024: House12
-    2300026: House13
-    2300028: House14
-    3300000: House00
-    3300002: House01
-    3300004: House02
-    3300006: House03
-    3300008: House04
-    3300010: House05
-    3300012: House06
-    3300014: House07
-    3300016: House08
-    3300018: House09
-    3300020: House10
-    3300022: House11
-    3300024: House12
-    3300026: House13
-    3300028: House14
-    4300000: House05
-    4300002: House00
-    4300004: House13
-    4300006: House04
-    4300008: House03
-    4300010: House02
-    4300012: House11
-    4300014: House10
-    4300016: House06
-    4300018: House01
-    4300020: House14
-    4300022: House07
-    4300024: House09
-    4300026: House12
-    4300028: House08
-    9500000: //RootNode
+  serializedVersion: 21300
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: //RootNode
+  - first:
+      1: 100002
+    second: House00
+  - first:
+      1: 100004
+    second: House01
+  - first:
+      1: 100006
+    second: House02
+  - first:
+      1: 100008
+    second: House03
+  - first:
+      1: 100010
+    second: House04
+  - first:
+      1: 100012
+    second: House05
+  - first:
+      1: 100014
+    second: House06
+  - first:
+      1: 100016
+    second: House07
+  - first:
+      1: 100018
+    second: House08
+  - first:
+      1: 100020
+    second: House09
+  - first:
+      1: 100022
+    second: House10
+  - first:
+      1: 100024
+    second: House11
+  - first:
+      1: 100026
+    second: House12
+  - first:
+      1: 100028
+    second: House13
+  - first:
+      1: 100030
+    second: House14
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      4: 400002
+    second: House00
+  - first:
+      4: 400004
+    second: House01
+  - first:
+      4: 400006
+    second: House02
+  - first:
+      4: 400008
+    second: House03
+  - first:
+      4: 400010
+    second: House04
+  - first:
+      4: 400012
+    second: House05
+  - first:
+      4: 400014
+    second: House06
+  - first:
+      4: 400016
+    second: House07
+  - first:
+      4: 400018
+    second: House08
+  - first:
+      4: 400020
+    second: House09
+  - first:
+      4: 400022
+    second: House10
+  - first:
+      4: 400024
+    second: House11
+  - first:
+      4: 400026
+    second: House12
+  - first:
+      4: 400028
+    second: House13
+  - first:
+      4: 400030
+    second: House14
+  - first:
+      23: 2300000
+    second: House00
+  - first:
+      23: 2300002
+    second: House01
+  - first:
+      23: 2300004
+    second: House02
+  - first:
+      23: 2300006
+    second: House03
+  - first:
+      23: 2300008
+    second: House04
+  - first:
+      23: 2300010
+    second: House05
+  - first:
+      23: 2300012
+    second: House06
+  - first:
+      23: 2300014
+    second: House07
+  - first:
+      23: 2300016
+    second: House08
+  - first:
+      23: 2300018
+    second: House09
+  - first:
+      23: 2300020
+    second: House10
+  - first:
+      23: 2300022
+    second: House11
+  - first:
+      23: 2300024
+    second: House12
+  - first:
+      23: 2300026
+    second: House13
+  - first:
+      23: 2300028
+    second: House14
+  - first:
+      33: 3300000
+    second: House00
+  - first:
+      33: 3300002
+    second: House01
+  - first:
+      33: 3300004
+    second: House02
+  - first:
+      33: 3300006
+    second: House03
+  - first:
+      33: 3300008
+    second: House04
+  - first:
+      33: 3300010
+    second: House05
+  - first:
+      33: 3300012
+    second: House06
+  - first:
+      33: 3300014
+    second: House07
+  - first:
+      33: 3300016
+    second: House08
+  - first:
+      33: 3300018
+    second: House09
+  - first:
+      33: 3300020
+    second: House10
+  - first:
+      33: 3300022
+    second: House11
+  - first:
+      33: 3300024
+    second: House12
+  - first:
+      33: 3300026
+    second: House13
+  - first:
+      33: 3300028
+    second: House14
+  - first:
+      43: 4300000
+    second: House05
+  - first:
+      43: 4300002
+    second: House00
+  - first:
+      43: 4300004
+    second: House13
+  - first:
+      43: 4300006
+    second: House04
+  - first:
+      43: 4300008
+    second: House03
+  - first:
+      43: 4300010
+    second: House02
+  - first:
+      43: 4300012
+    second: House11
+  - first:
+      43: 4300014
+    second: House10
+  - first:
+      43: 4300016
+    second: House06
+  - first:
+      43: 4300018
+    second: House01
+  - first:
+      43: 4300020
+    second: House14
+  - first:
+      43: 4300022
+    second: House07
+  - first:
+      43: 4300024
+    second: House09
+  - first:
+      43: 4300026
+    second: House12
+  - first:
+      43: 4300028
+    second: House08
+  - first:
+      95: 9500000
+    second: //RootNode
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -99,39 +256,63 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 0
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -141,14 +322,18 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 0
   humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
