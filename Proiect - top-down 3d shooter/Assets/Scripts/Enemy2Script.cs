@@ -60,6 +60,7 @@ public class Enemy2Script : MonoBehaviour
     void MoveEnemy()
     {
         RotateEnemy();
+
         if (isClose() == false)
         {
             transform.position += transform.forward * movementSpeed * Time.deltaTime;       // chasing the target

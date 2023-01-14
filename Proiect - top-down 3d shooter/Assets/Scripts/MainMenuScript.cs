@@ -10,6 +10,7 @@ public class MainMenuScript : MonoBehaviour
     
     public void PlayGame()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(PlayScene);
     }
 

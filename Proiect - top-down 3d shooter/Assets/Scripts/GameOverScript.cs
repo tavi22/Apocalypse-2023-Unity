@@ -46,6 +46,9 @@ public class GameOverScript: MonoBehaviour
             scoreText.text = score.ToString();
             playerName = inputName.text;
 
+            Enemy1Spawner.src.Cancel();
+            Enemy2Spawner.src.Cancel();
+
         }
     }
 

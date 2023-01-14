@@ -12,6 +12,9 @@ public class Enemy1Spawner : MonoBehaviour
 {
     [SerializeField] public GameObject Enemy1Prefab;
 
+    public static CancellationTokenSource src = new CancellationTokenSource();
+    public static CancellationToken token = src.Token;
+
     // public float lifetime = 100000f; //if you don't shoot the enemy, it will autodestroy after a certain time
 
     public static Enemy1Spawner Instance;
@@ -21,11 +24,10 @@ public class Enemy1Spawner : MonoBehaviour
         Instance = GetComponent<Enemy1Spawner>();
     }
 
-
     async void Start()
     {
 
-        await Task.Delay(7000);
+        await Task.Delay(7000, token);
 
         Vector3 spawnPosition = new Vector3(Random.Range(-50, 50), 0, Random.Range(-50, 50));
 
@@ -35,9 +37,6 @@ public class Enemy1Spawner : MonoBehaviour
         // Destroy(enemy, lifetime);
 
     }
-
-    
-
 
     void Update()
     {
