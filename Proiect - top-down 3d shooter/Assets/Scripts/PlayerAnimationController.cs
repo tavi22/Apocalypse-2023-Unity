@@ -78,7 +78,7 @@ public class PlayerAnimationController : MonoBehaviour
         }
 
         // The player can't shoot with no bullets left in round and while it's reloading/jumping or running
-        if (Input.GetMouseButton(0) && PlayerScript.noOfBulletsInRound > 0 && animator.GetBool("isReloading") == false && animator.GetBool("isJumping") == false && animator.GetBool("isRunning") == false)
+        if (Input.GetMouseButton(0) && PlayerScript.noOfBulletsInRoundActive > 0 && animator.GetBool("isReloading") == false && animator.GetBool("isJumping") == false && animator.GetBool("isRunning") == false)
         {
             animator.SetBool("isShooting", true);
         }

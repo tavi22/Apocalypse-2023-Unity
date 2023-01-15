@@ -11,7 +11,7 @@ public class GunScript : MonoBehaviour
     GameObject projectilePrefab;        //bullet prefab
 
     [SerializeField]
-    [Range(1f, 10f)]
+    [Range(1f, 15f)]
     float firingSpeed;
 
     public static GunScript Instance;   //GunScript object instance
@@ -31,9 +31,9 @@ public class GunScript : MonoBehaviour
     public void Shoot()
     {
         //Minimum time between two shots will be 1/firingSpeed seconds
-        if (lastTimeShot + 1 / firingSpeed <= Time.time && PlayerScript.noOfBulletsInRound > 0)
+        if (lastTimeShot + 1 / firingSpeed <= Time.time && PlayerScript.noOfBulletsInRoundActive > 0)
         {
-            PlayerScript.noOfBulletsInRound -= 1;
+            PlayerScript.noOfBulletsInRoundActive -= 1;
 
             lastTimeShot = Time.time;
 

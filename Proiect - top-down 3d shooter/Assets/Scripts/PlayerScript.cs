@@ -26,12 +26,27 @@ public class PlayerScript : MonoBehaviour
     [Range(0f, 0.5f)]
     float groundDistance = 0.01f;           //distance from player body to ground
 
-    public static int noOfBulletsInRound;   //number of bullets in the gun's round
-    int noOfBullets;                        //number of bullets left besides the ones in the gun
-    int maxNoOfBulletsInRound;              //the maximum number of bullets that a round can have
+    float noOfBulletsInRoundPistol;   //number of bullets in the pistol's round
+    float noOfBulletsPistol;                        //number of bullets left besides the ones in the pistol
+    int maxNoOfBulletsInRoundPistol;              //the maximum number of bullets that a pistol round can have
 
     [SerializeField]
-    GameObject gun;                         //player's gun
+    GameObject pistol;                         //player's pistol
+
+    float noOfBulletsInRoundRifle;   //number of bullets in the rifle's round
+    float noOfBulletsRifle;                        //number of bullets left besides the ones in the rifle
+    int maxNoOfBulletsInRoundRifle;              //the maximum number of bullets that a rifle round can have
+
+    [SerializeField]
+    GameObject rifle;                         //player's rifle
+
+    public static float noOfBulletsInRoundActive;   //number of bullets in the gun's round
+    float noOfBulletsActive;                        //number of bullets left besides the ones in the gun
+    int maxNoOfBulletsInRoundActive;              //the maximum number of bullets that a round can have
+
+    GameObject activeGun;                      //player's active gun
+
+    string activeGunString;
 
     [SerializeField]
     Animator animator;                      //player's animator
@@ -42,8 +57,6 @@ public class PlayerScript : MonoBehaviour
     public int currentHealth;
     public HealthBar healthBar;
 
-    //public TextMeshProUGUI ammoInGunText;
-    //public TextMeshProUGUI ammoLeftText;
     public TextMeshProUGUI ammoText;
 
     public static bool isAlive = true;
@@ -51,19 +64,30 @@ public class PlayerScript : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        
+
         //Set the bullet bounds
-        noOfBullets = 75;
-        noOfBulletsInRound = 15;
-        maxNoOfBulletsInRound = 15;
+        noOfBulletsPistol = Mathf.Infinity;
+        noOfBulletsInRoundPistol = 15;
+        maxNoOfBulletsInRoundPistol = 15;
+
+        noOfBulletsRifle = 90;
+        noOfBulletsInRoundRifle = 30;
+        maxNoOfBulletsInRoundRifle = 30;
+
+        noOfBulletsActive = Mathf.Infinity;
+        noOfBulletsInRoundActive = 15;
+        maxNoOfBulletsInRoundActive = 15;
+
+        activeGun = pistol;
+
+        activeGunString = "pistol";
+
         reloadTime = 850;
 
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
 
-        //ammoInGunText.text = noOfBullets.ToString();
-        //ammoLeftText.text = noOfBulletsInRound.ToString();
-        ammoText.text = noOfBulletsInRound.ToString() + "/" + noOfBullets.ToString();
+        ammoText.text = noOfBulletsInRoundPistol.ToString() + "/" + "\u221E";
 
     }
 
@@ -78,11 +102,20 @@ public class PlayerScript : MonoBehaviour
         HandleShootInput();
         HandleReloadInput();
 
-        //ammoInGunText.text = noOfBullets.ToString();
-        //ammoLeftText.text = noOfBulletsInRound.ToString();
-        ammoText.text = noOfBulletsInRound.ToString() + "/" + noOfBullets.ToString();
+        switchWeapon();
 
-       
+        if(activeGunString == "pistol")
+        {
+            ammoText.text = noOfBulletsInRoundActive.ToString() + "/" + "\u221E";
+            noOfBulletsInRoundPistol = noOfBulletsInRoundActive;
+
+        }
+        else
+        {
+            ammoText.text = noOfBulletsInRoundActive.ToString() + "/" + noOfBulletsRifle.ToString();
+            noOfBulletsInRoundRifle = noOfBulletsInRoundActive;
+            noOfBulletsRifle= noOfBulletsActive;
+        }
 
         if (Input.GetKeyDown(KeyCode.B))
         {
@@ -94,6 +127,35 @@ public class PlayerScript : MonoBehaviour
         if(currentHealth <= 0)
         {
             isAlive = false;
+        }
+    }
+
+    void switchWeapon()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            noOfBulletsActive = noOfBulletsPistol;
+            noOfBulletsInRoundActive = noOfBulletsInRoundPistol;
+            maxNoOfBulletsInRoundActive = maxNoOfBulletsInRoundPistol;
+
+            ammoText.text = noOfBulletsInRoundActive.ToString() + "/" + "\u221E";
+
+            activeGunString = "pistol";
+
+            pistol.SetActive(true);
+            rifle.SetActive(false);
+        } else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            noOfBulletsActive = noOfBulletsRifle;
+            noOfBulletsInRoundActive = noOfBulletsInRoundRifle;
+            maxNoOfBulletsInRoundActive = maxNoOfBulletsInRoundRifle;
+
+            ammoText.text = noOfBulletsInRoundActive.ToString() + "/" + noOfBulletsRifle.ToString();
+
+            activeGunString = "rifle";
+
+            pistol.SetActive(false);
+            rifle.SetActive(true);
         }
     }
 
@@ -142,7 +204,7 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetMouseButton(0) && animator.GetBool("isReloading") == false && isGrounded && animator.GetBool("isRunning") == false)
         {
             
-            if (gun.transform.position.y >= 2.36)
+            if (activeGun.transform.position.y >= 2.36)
             { 
                 GunScript.Instance.Shoot(); 
             }
@@ -168,29 +230,29 @@ public class PlayerScript : MonoBehaviour
     //Player reloads the gun
     async void HandleReloadInput()
     {
-        if (Input.GetKey(KeyCode.R) && noOfBullets > 0 && isGrounded && animator.GetBool("isReloading") == false && animator.GetBool("isShooting") == false && isGrounded && animator.GetBool("isRunning") == false)
+        if (Input.GetKey(KeyCode.R) && noOfBulletsActive > 0 && isGrounded && animator.GetBool("isReloading") == false && animator.GetBool("isShooting") == false && isGrounded && animator.GetBool("isRunning") == false)
         {
             animator.SetBool("isReloading", true);      //now the animator knows that the player is reloading the gun
             
             await Task.Delay((int)(reloadTime * 1/Time.timeScale));     //add delay of 1.5s to reload task
 
-            if (noOfBullets >= maxNoOfBulletsInRound)
+            if (noOfBulletsActive >= maxNoOfBulletsInRoundActive)
             {
-                noOfBullets = noOfBullets - maxNoOfBulletsInRound + noOfBulletsInRound;
-                noOfBulletsInRound = maxNoOfBulletsInRound;
+                noOfBulletsActive = noOfBulletsActive - maxNoOfBulletsInRoundActive + noOfBulletsInRoundActive;
+                noOfBulletsInRoundActive = maxNoOfBulletsInRoundActive;
             }
             else
             {
-                int max_bullets = maxNoOfBulletsInRound - noOfBulletsInRound;       //the maximum number of bullets that can be added in the round
-                if (noOfBullets <= max_bullets)
+                float max_bullets = maxNoOfBulletsInRoundActive - noOfBulletsInRoundActive;       //the maximum number of bullets that can be added in the round
+                if (noOfBulletsActive <= max_bullets)
                 {
-                    noOfBulletsInRound += noOfBullets;
-                    noOfBullets = 0;
+                    //noOfBulletsInRoundPistol += noOfBulletsPistol;
+                    noOfBulletsActive = 0;
                 }
                 else
                 {
-                    noOfBulletsInRound = maxNoOfBulletsInRound;
-                    noOfBullets -= max_bullets;
+                    noOfBulletsInRoundActive = maxNoOfBulletsInRoundActive;
+                    noOfBulletsActive -= max_bullets;
                 }
             }
 
@@ -224,7 +286,7 @@ public class PlayerScript : MonoBehaviour
 
     public void addBullets(int num)
     {
-        noOfBullets += num;
+        noOfBulletsRifle += num;
     }
 
     public void addHealth(int num)
