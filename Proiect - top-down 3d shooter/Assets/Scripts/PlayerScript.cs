@@ -287,6 +287,9 @@ public class PlayerScript : MonoBehaviour
     public void addBullets(int num)
     {
         noOfBulletsRifle += num;
+	if (activeGunString == "rifle"){
+		noOfBulletsActive = noOfBulletsRifle;
+	}
     }
 
     public void addHealth(int num)
