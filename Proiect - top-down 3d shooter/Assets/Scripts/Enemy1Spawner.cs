@@ -15,6 +15,8 @@ public class Enemy1Spawner : MonoBehaviour
 
     public static int noOfEnemiesAlive = 0;
 
+    GameObject _parent;
+
     void Awake()
     {
         Instance = GetComponent<Enemy1Spawner>();
@@ -23,6 +25,7 @@ public class Enemy1Spawner : MonoBehaviour
 
     void Start()
     {
+        _parent = GameObject.Find("Enemy1");
         StartCoroutine(Spawn());
     }
 
@@ -30,6 +33,8 @@ public class Enemy1Spawner : MonoBehaviour
     {
         if (noOfEnemiesAlive < 20)
         {
+            Debug.Log(noOfEnemiesAlive);
+
             float ranX = Random.Range(-25, 25);
             float ranZ = Random.Range(-25, 25);
 
@@ -55,15 +60,16 @@ public class Enemy1Spawner : MonoBehaviour
             Vector3 spawnPosition = new Vector3(player.position.x + ranX, 0.5f, player.position.x + ranZ);
 
             GameObject enemy = Instantiate(Enemy1Prefab, spawnPosition, Quaternion.identity);
-            //enemy.GetComponent<Canvas>().enabled = true;
+
             enemy.transform.Find("Canvas").Find("Health bar").gameObject.GetComponent<HealthBar>().fill.fillAmount = 1;
-            //enemy.GetComponent<HealthBar>().fill.fillAmount = 1;
-            // Destroy(enemy, lifetime);
+
+            enemy.tag = "Enemy1";
+            enemy.transform.parent = _parent.transform;
 
             noOfEnemiesAlive++;
-
-            yield return new WaitForSeconds(7);
         }
+
+        yield return new WaitForSeconds(7);
 
         if (PlayerScript.isAlive)
         {

@@ -36,6 +36,7 @@ public class GunScript : MonoBehaviour
             PlayerScript.noOfBulletsInRound -= 1;
 
             lastTimeShot = Time.time;
+
             //A new bullet will be generated and fired
             GameObject bullet = Instantiate(projectilePrefab, firingPoint.position, firingPoint.rotation);
             bullet.tag = "PlayerBullet";

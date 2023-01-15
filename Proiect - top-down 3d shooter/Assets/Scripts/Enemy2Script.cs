@@ -34,7 +34,6 @@ public class Enemy2Script : MonoBehaviour
         playerScoreManager = playerCanvas.GetComponent<ScoreManager>();
 
         enemyGunScript = transform.Find("Bip001").Find("Bip001 Pelvis").Find("Bip001 Spine").Find("Bip001 R Clavicle").Find("Bip001 R UpperArm").Find("Bip001 R Forearm").Find("Bip001 R Hand").GetChild(0).gameObject.GetComponent<EnemyGunScript>();
-        //daca se mai spawneaza cand e pauza poate sa ii dezactivez pe inamicii dupa care se copiaza sau pe toti dupa tag
     }
 
     // Update is called once per frame
@@ -60,7 +59,6 @@ public class Enemy2Script : MonoBehaviour
                 playerScoreManager?.AddPoint();
                 pointAdded = true;
                 Enemy2Spawner.noOfEnemiesAlive--;
-                Debug.Log(Enemy2Spawner.noOfEnemiesAlive);
             }
         }
     }
@@ -102,7 +100,7 @@ public class Enemy2Script : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "PlayerBullet")
+        if (collision.gameObject.CompareTag("PlayerBullet"))
         {
             TakeDamage(20);
         }

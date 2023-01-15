@@ -29,7 +29,7 @@ public class Enemy1Script : MonoBehaviour
 
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
-        //playerScoreManager = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreManager>();
+
         playerScoreManager = playerCanvas.GetComponent<ScoreManager>();
     }
 
@@ -50,7 +50,6 @@ public class Enemy1Script : MonoBehaviour
                 playerScoreManager?.AddPoint();
                 pointAdded = true;
                 Enemy1Spawner.noOfEnemiesAlive--;
-                Debug.Log(Enemy1Spawner.noOfEnemiesAlive);
             }
 
         }
@@ -85,7 +84,7 @@ public class Enemy1Script : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "PlayerBullet")
+        if (collision.gameObject.CompareTag("PlayerBullet"))
         {
             TakeDamage(40);
         }
