@@ -207,9 +207,12 @@ public class PlayerScript : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         //daca se atinge playerul de inamic ia damage - pt test
-        if (collision.gameObject.tag == "Enemy1" || collision.gameObject.tag == "Enemy2" || collision.gameObject.tag == "EnemyBullet")
+        if (collision.gameObject.tag == "Enemy1" || collision.gameObject.tag == "Enemy2")
         {
             TakeDamage(30);
+        } else if (collision.gameObject.tag == "EnemyBullet")
+        {
+            TakeDamage(10);
         }
     }
 

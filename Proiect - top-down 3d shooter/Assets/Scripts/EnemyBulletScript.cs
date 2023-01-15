@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletScript : MonoBehaviour
+public class EnemyBulletScript : MonoBehaviour
 {
     [SerializeField]
     float projectileSpeed;      //bullet speed
@@ -26,12 +26,7 @@ public class BulletScript : MonoBehaviour
             gameObject.SetActive(false);
         }
 
-        if (collision.gameObject.CompareTag("Enemy1"))
-        {
-            gameObject.SetActive(false);
-        }
-
-        if (collision.gameObject.CompareTag("Enemy2"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             gameObject.SetActive(false);
         }

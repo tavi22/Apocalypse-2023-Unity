@@ -24,7 +24,7 @@ public class Enemy1Script : MonoBehaviour
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        playerCanvas = transform.GetComponentInChildren<Canvas>();
+        playerCanvas = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Canvas>();
         healthBar = transform.Find("Canvas").Find("Health bar").gameObject.GetComponent<HealthBar>();
 
         currentHealth = maxHealth;

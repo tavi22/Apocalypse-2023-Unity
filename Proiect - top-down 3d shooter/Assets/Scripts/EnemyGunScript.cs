@@ -30,7 +30,6 @@ public class EnemyGunScript : MonoBehaviour
         //Minimum time between two shots will be 1/firingSpeed seconds
         if (lastTimeShot + 1 / firingSpeed <= Time.time)
         {
-            Debug.Log(".");
             lastTimeShot = Time.time;
             //A new bullet will be generated and fired
             GameObject bullet = Instantiate(projectilePrefab, transform.position, transform.rotation);

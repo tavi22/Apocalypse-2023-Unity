@@ -8,12 +8,15 @@ using Random = UnityEngine.Random;
 public class Enemy2Spawner : MonoBehaviour
 {
     [SerializeField] public GameObject Enemy2Prefab;
-    
+
+    Transform player;
+
     public static Enemy2Spawner Instance;
 
     void Awake()
     {
         Instance = GetComponent<Enemy2Spawner>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
 
@@ -24,7 +27,28 @@ public class Enemy2Spawner : MonoBehaviour
 
     IEnumerator Spawn()
     {
-        Vector3 spawnPosition = new Vector3(Random.Range(-50, 50), 0, Random.Range(-50, 50));
+        float ranX = Random.Range(-25, 25);
+        float ranZ = Random.Range(-25, 25);
+
+        if (ranX > -15 && ranX < 0)
+        {
+            ranX = -15;
+        } else if (ranX < 15 && ranX >= 0)
+        {
+            ranX = -15;
+        }
+
+        if (ranZ > -15 && ranZ < 0)
+        {
+            ranZ = -15;
+        }
+        else if (ranZ < 15 && ranZ >= 0)
+        {
+            ranZ = -15;
+        }
+
+
+        Vector3 spawnPosition = new Vector3(player.position.x + ranX, 0.5f, player.position.x + ranZ);
 
         GameObject enemy = Instantiate(Enemy2Prefab, spawnPosition, Quaternion.identity);
         //enemy.GetComponent<Canvas>().enabled = true;

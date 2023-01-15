@@ -85,7 +85,7 @@ public class Bullet_up : MonoBehaviour
 
     private void Update()
     {
-        if (scoreManager.score % 5 == 0 && scoreManager.score > 0 && hasRespawned == false && scoreManager.score!=oldScore)
+        if (scoreManager.score % 3 == 0 && scoreManager.score > 0 && hasRespawned == false && scoreManager.score!=oldScore)
         {
             hasRespawned = true;
 
