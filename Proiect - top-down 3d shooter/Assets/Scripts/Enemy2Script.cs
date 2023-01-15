@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Enemy2Script : MonoBehaviour
 {
-    [SerializeField]
     Transform target;                       // target object 
 
     [SerializeField]
@@ -12,22 +11,29 @@ public class Enemy2Script : MonoBehaviour
 
     static float distanceToPlayer = 10.0f;          // distance between enemy and target
 
-    [SerializeField]
-    Animator animator;
-
     public int maxHealth = 100;
     public int currentHealth;
-    public HealthBar healthBar;
+
+    HealthBar healthBar;
     private ScoreManager playerScoreManager;
-    public Canvas playerCanvas;
+    Canvas playerCanvas;
+
     private bool pointAdded = false;
+
+    EnemyGunScript enemyGunScript;
 
     // Start is called before the first frame update
     void Start()
     {
+        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        playerCanvas = transform.GetComponentInChildren<Canvas>();
+        healthBar = transform.Find("Canvas").Find("Health bar").gameObject.GetComponent<HealthBar>();
+
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         playerScoreManager = playerCanvas.GetComponent<ScoreManager>();
+
+        enemyGunScript = transform.Find("Bip001").Find("Bip001 Pelvis").Find("Bip001 Spine").Find("Bip001 R Clavicle").Find("Bip001 R UpperArm").Find("Bip001 R Forearm").Find("Bip001 R Hand").GetChild(0).gameObject.GetComponent<EnemyGunScript>();
         //daca se mai spawneaza cand e pauza poate sa ii dezactivez pe inamicii dupa care se copiaza sau pe toti dupa tag
     }
 
@@ -38,10 +44,10 @@ public class Enemy2Script : MonoBehaviour
         healthBar.SetHealth(currentHealth);
 
         distanceToPlayer = Vector3.Distance(transform.position, target.position);
-        // if (distanceToPlayer < 10.0f)
-        // {
-            EnemyGunScript.Instance.Shoot();                // bug la shooting
-        // }
+        if (distanceToPlayer < 10.0f)
+        {
+            enemyGunScript.Shoot();                // bug la shooting
+        }
         MoveEnemy();    
 
 
@@ -51,7 +57,7 @@ public class Enemy2Script : MonoBehaviour
             movementSpeed = 0.0f;
             if (pointAdded == false)
             {
-                playerScoreManager.AddPoint();
+                playerScoreManager?.AddPoint();
                 pointAdded = true;
             }
         }

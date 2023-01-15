@@ -46,7 +46,7 @@ public class PlayerScript : MonoBehaviour
     //public TextMeshProUGUI ammoLeftText;
     public TextMeshProUGUI ammoText;
 
-    
+    public static bool isAlive = true;
 
     void Start()
     {
@@ -90,6 +90,11 @@ public class PlayerScript : MonoBehaviour
         }
 
         healthBar.SetHealth(currentHealth);
+
+        if(currentHealth <= 0)
+        {
+            isAlive = false;
+        }
     }
 
     void FixedUpdate()

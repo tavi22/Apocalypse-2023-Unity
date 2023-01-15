@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Enemy1Script : MonoBehaviour
 {
-    [SerializeField]
     Transform target;                       // target object 
 
     [SerializeField]
@@ -14,14 +13,20 @@ public class Enemy1Script : MonoBehaviour
 
     public int maxHealth = 100;
     public int currentHealth;
-    public HealthBar healthBar;
+
+    HealthBar healthBar;
     private ScoreManager playerScoreManager;
-    public Canvas playerCanvas;
+    Canvas playerCanvas;
+
     private bool pointAdded = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        playerCanvas = transform.GetComponentInChildren<Canvas>();
+        healthBar = transform.Find("Canvas").Find("Health bar").gameObject.GetComponent<HealthBar>();
+
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         //playerScoreManager = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreManager>();
@@ -35,17 +40,17 @@ public class Enemy1Script : MonoBehaviour
 
         MoveEnemy();
         distanceToPlayer = Vector3.Distance(transform.position, target.position);
-        
+
         // daca inamicul a murit, ii oprim miscarea (ca sa nu mai vina spre player in timpul animatiei de moarte)
-        if (currentHealth <= 0) 
+        if (currentHealth <= 0)
         {
             movementSpeed = 0.0f;
             if (pointAdded == false)
             {
-                playerScoreManager.AddPoint();
-                pointAdded = true; 
+                playerScoreManager?.AddPoint();
+                pointAdded = true;
             }
-            
+
         }
     }
 
