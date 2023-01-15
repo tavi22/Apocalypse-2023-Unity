@@ -36,19 +36,42 @@ public class Heart_up : MonoBehaviour
             Transform playerPos = player.GetComponent<Transform>();
 
             //random X axis position
-            float offset_x = UnityEngine.Random.Range(-25f, 25f);
+            float offset_x = UnityEngine.Random.Range(-20f, 20f);
+
+            if (offset_x > -3 && offset_x < 0)
+            {
+                offset_x = -3;
+            }
+            else if (offset_x < 3 && offset_x >= 0)
+            {
+                offset_x = 3;
+            }
+
             float PosX = playerPos.position.x + offset_x;
+
             if (PosX > 0)
             {
                 PosX = Mathf.Min(PosX, 370f);
-            } else if (PosX < 0) 
+            }
+            else if (PosX < 0)
             {
                 PosX = Mathf.Max(PosX, -370f);
             }
 
             //random Z axis pozition
-            float offset_z = UnityEngine.Random.Range(-25f, 25f);
+            float offset_z = UnityEngine.Random.Range(-20f, 20f);
+
+            if (offset_z > -3 && offset_z < 0)
+            {
+                offset_z = -3;
+            }
+            else if (offset_z < 3 && offset_z >= 0)
+            {
+                offset_z = 3;
+            }
+
             float PosZ = playerPos.position.z + offset_z;
+
             if (PosZ > 0)
             {
                 PosZ = Mathf.Min(PosZ, 370f);
@@ -62,7 +85,6 @@ public class Heart_up : MonoBehaviour
 
             transform.position = newPos;
 
-            Debug.Log(transform.position);
         }
     }
 
@@ -93,8 +115,19 @@ public class Heart_up : MonoBehaviour
             Transform playerPos = player.GetComponent<Transform>();
 
             //random X axis position
-            float offset_x = UnityEngine.Random.Range(-25f, 25f);
+            float offset_x = UnityEngine.Random.Range(-20f, 20f);
+
+            if (offset_x > -3 && offset_x < 0)
+            {
+                offset_x = -3;
+            }
+            else if (offset_x < 3 && offset_x >= 0)
+            {
+                offset_x = 3;
+            }
+
             float PosX = playerPos.position.x + offset_x;
+
             if (PosX > 0)
             {
                 PosX = Mathf.Min(PosX, 370f);
@@ -105,8 +138,19 @@ public class Heart_up : MonoBehaviour
             }
 
             //random Z axis pozition
-            float offset_z = UnityEngine.Random.Range(-25f, 25f);
+            float offset_z = UnityEngine.Random.Range(-20f, 20f);
+
+            if (offset_z > -3 && offset_z < 0)
+            {
+                offset_z = -3;
+            }
+            else if (offset_z < 3 && offset_z >= 0)
+            {
+                offset_z = 3;
+            }
+
             float PosZ = playerPos.position.z + offset_z;
+
             if (PosZ > 0)
             {
                 PosZ = Mathf.Min(PosZ, 370f);
@@ -119,8 +163,6 @@ public class Heart_up : MonoBehaviour
             Vector3 newPos = new Vector3(PosX, 1, PosZ);    //the new position for the power-up
 
             transform.position = newPos;
-
-            Debug.Log(transform.position);
 
             renderer.enabled = true;
             gameObject.GetComponent<Collider>().enabled = true;

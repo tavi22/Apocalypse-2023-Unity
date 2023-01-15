@@ -49,6 +49,8 @@ public class Enemy1Script : MonoBehaviour
             {
                 playerScoreManager?.AddPoint();
                 pointAdded = true;
+                Enemy1Spawner.noOfEnemiesAlive--;
+                Debug.Log(Enemy1Spawner.noOfEnemiesAlive);
             }
 
         }

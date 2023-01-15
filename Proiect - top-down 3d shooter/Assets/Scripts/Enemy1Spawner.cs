@@ -13,6 +13,8 @@ public class Enemy1Spawner : MonoBehaviour
 
     public static Enemy1Spawner Instance;
 
+    public static int noOfEnemiesAlive = 0;
+
     void Awake()
     {
         Instance = GetComponent<Enemy1Spawner>();
@@ -26,37 +28,42 @@ public class Enemy1Spawner : MonoBehaviour
 
     IEnumerator Spawn()
     {
-        float ranX = Random.Range(-25, 25);
-        float ranZ = Random.Range(-25, 25);
-
-        if (ranX > -15 && ranX < 0)
+        if (noOfEnemiesAlive < 20)
         {
-            ranX = -15;
+            float ranX = Random.Range(-25, 25);
+            float ranZ = Random.Range(-25, 25);
+
+            if (ranX > -15 && ranX < 0)
+            {
+                ranX = -15;
+            }
+            else if (ranX < 15 && ranX >= 0)
+            {
+                ranX = -15;
+            }
+
+            if (ranZ > -15 && ranZ < 0)
+            {
+                ranZ = -15;
+            }
+            else if (ranZ < 15 && ranZ >= 0)
+            {
+                ranZ = -15;
+            }
+
+
+            Vector3 spawnPosition = new Vector3(player.position.x + ranX, 0.5f, player.position.x + ranZ);
+
+            GameObject enemy = Instantiate(Enemy1Prefab, spawnPosition, Quaternion.identity);
+            //enemy.GetComponent<Canvas>().enabled = true;
+            enemy.transform.Find("Canvas").Find("Health bar").gameObject.GetComponent<HealthBar>().fill.fillAmount = 1;
+            //enemy.GetComponent<HealthBar>().fill.fillAmount = 1;
+            // Destroy(enemy, lifetime);
+
+            noOfEnemiesAlive++;
+
+            yield return new WaitForSeconds(7);
         }
-        else if (ranX < 15 && ranX >= 0)
-        {
-            ranX = -15;
-        }
-
-        if (ranZ > -15 && ranZ < 0)
-        {
-            ranZ = -15;
-        }
-        else if (ranZ < 15 && ranZ >= 0)
-        {
-            ranZ = -15;
-        }
-
-
-        Vector3 spawnPosition = new Vector3(player.position.x + ranX, 0.5f, player.position.x + ranZ);
-
-        GameObject enemy = Instantiate(Enemy1Prefab, spawnPosition, Quaternion.identity);
-        //enemy.GetComponent<Canvas>().enabled = true;
-        enemy.transform.Find("Canvas").Find("Health bar").gameObject.GetComponent<HealthBar>().fill.fillAmount = 1;
-        //enemy.GetComponent<HealthBar>().fill.fillAmount = 1;
-        // Destroy(enemy, lifetime);
-
-        yield return new WaitForSeconds(7);
 
         if (PlayerScript.isAlive)
         {

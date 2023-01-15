@@ -53,9 +53,9 @@ public class PlayerScript : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         
         //Set the bullet bounds
-        noOfBullets = 50;
-        noOfBulletsInRound = 10;
-        maxNoOfBulletsInRound = 10;
+        noOfBullets = 75;
+        noOfBulletsInRound = 15;
+        maxNoOfBulletsInRound = 15;
         reloadTime = 850;
 
         currentHealth = maxHealth;
@@ -207,7 +207,7 @@ public class PlayerScript : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         //daca se atinge playerul de inamic ia damage - pt test
-        if (collision.gameObject.tag == "Enemy1" || collision.gameObject.tag == "Enemy2")
+        if (collision.gameObject.tag == "Enemy1")
         {
             TakeDamage(30);
         } else if (collision.gameObject.tag == "EnemyBullet")
