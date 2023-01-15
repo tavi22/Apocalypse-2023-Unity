@@ -1,4 +1,4 @@
-# Proiect in Unity pentru Programarea Jocurilor
+# Apocalypse 2023: The Battle for Info City
 
 ## Incarcare recenzii
 
