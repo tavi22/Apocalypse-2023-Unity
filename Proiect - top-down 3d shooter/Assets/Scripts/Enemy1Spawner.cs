@@ -33,7 +33,6 @@ public class Enemy1Spawner : MonoBehaviour
     {
         if (noOfEnemiesAlive < 20)
         {
-            Debug.Log(noOfEnemiesAlive);
 
             float ranX = Random.Range(-25, 25);
             float ranZ = Random.Range(-25, 25);
