@@ -1,21 +1,17 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 
 public class Heart_up : MonoBehaviour
 {   
-    public Health_up parent;
     public GameObject pickupEffect;
     private PlayerScript playerscript;
     private ScoreManager scoreManager;
     public GameObject player;
     private Canvas canvas;
-    public MeshRenderer renderer;
+    public MeshRenderer rnd;
 
     private bool hasRespawned = false;
-    private int oldScore=0;
-
+    private int oldScore = 0;
     public float duration = 1;
 
     private void Start()
@@ -29,14 +25,13 @@ public class Heart_up : MonoBehaviour
         if (Other.CompareTag("Player"))
         {
            Pickup();
-        } else if (Other.CompareTag("Ground"))
+        } 
+        else if (Other.CompareTag("Ground"))
         {
-            Debug.Log(transform.position);
-
             Transform playerPos = player.GetComponent<Transform>();
 
             //random X axis position
-            float offset_x = UnityEngine.Random.Range(-20f, 20f);
+            float offset_x = Random.Range(-20f, 20f);
 
             if (offset_x > -3 && offset_x < 0)
             {
@@ -84,7 +79,6 @@ public class Heart_up : MonoBehaviour
             Vector3 newPos = new Vector3(PosX, 1, PosZ);
 
             transform.position = newPos;
-
         }
     }
 
@@ -92,17 +86,12 @@ public class Heart_up : MonoBehaviour
     {
         Instantiate(pickupEffect, transform.position, transform.rotation);
         
-        
         playerscript = player.GetComponent<PlayerScript>();
         playerscript.currentHealth = 100;
 
-
-
-        renderer.enabled = false;
+        rnd.enabled = false;
         gameObject.GetComponent<Collider>().enabled = false;
         hasRespawned = false;
-        
-
     }
 
     private void Update()
@@ -115,7 +104,7 @@ public class Heart_up : MonoBehaviour
             Transform playerPos = player.GetComponent<Transform>();
 
             //random X axis position
-            float offset_x = UnityEngine.Random.Range(-20f, 20f);
+            float offset_x = Random.Range(-20f, 20f);
 
             if (offset_x > -3 && offset_x < 0)
             {
@@ -164,13 +153,13 @@ public class Heart_up : MonoBehaviour
 
             transform.position = newPos;
 
-            renderer.enabled = true;
+            rnd.enabled = true;
             gameObject.GetComponent<Collider>().enabled = true;
             oldScore = scoreManager.score;
         }
         else if (scoreManager.score == 0)
         {
-            renderer.enabled = false;
+            rnd.enabled = false;
             gameObject.GetComponent<Collider>().enabled = false;
         }
     }

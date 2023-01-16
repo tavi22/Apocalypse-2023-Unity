@@ -1,22 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 
 public class GunScript : MonoBehaviour
 {
-    [SerializeField]
-    Transform firingPoint;              //bullet firing point
+    [SerializeField] Transform firingPoint;              //bullet firing point
 
-    [SerializeField]
-    GameObject projectilePrefab;        //bullet prefab
+    [SerializeField] GameObject projectilePrefab;        //bullet prefab
 
-    [SerializeField]
-    [Range(1f, 15f)]
-    float firingSpeed;
+    [SerializeField] [Range(1f, 15f)] float firingSpeed;
 
-    public static GunScript Instance;   //GunScript object instance
-    float lastTimeShot = 0;             //last time the player shot with the gun
-    GameObject _parent;                 //gameobject where all the generated bullets will be placed as childs
+    public static GunScript Instance;       //GunScript object instance
+    float lastTimeShot = 0;                 //last time the player shot with the gun
+    GameObject _parent;                     //gameobject where all the generated bullets will be placed as childs
 
     void Awake()
     {

@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
@@ -8,50 +6,40 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-    [SerializeField]
-    [Range(0f, 15f)]
-    float movementSpeed = 1f;               //player's movement speed
+    [SerializeField] [Range(0f, 15f)] float movementSpeed = 1f;               //player's movement speed
 
-    [SerializeField]
-    [Range(1f, 10f)]
-    float jumpForce = 1f;                   //player's jump force
+    [SerializeField] [Range(1f, 10f)] float jumpForce = 1f;                   //player's jump force
 
     static bool isGrounded;                 //is player on the ground or not
     Rigidbody rb;                           //player rigidbody
 
-    [SerializeField]
-    LayerMask groundLayer;                  //layer to be detected as ground
+    [SerializeField] LayerMask groundLayer;                  //layer to be detected as ground
 
-    [SerializeField]
-    [Range(0f, 0.5f)]
-    float groundDistance = 0.01f;           //distance from player body to ground
+    [SerializeField] [Range(0f, 0.5f)] float groundDistance = 0.01f;          //distance from player body to ground
 
-    float noOfBulletsInRoundPistol;   //number of bullets in the pistol's round
+    float noOfBulletsInRoundPistol;                 //number of bullets in the pistol's round
     float noOfBulletsPistol;                        //number of bullets left besides the ones in the pistol
-    int maxNoOfBulletsInRoundPistol;              //the maximum number of bullets that a pistol round can have
+    int maxNoOfBulletsInRoundPistol;                //the maximum number of bullets that a pistol round can have
 
-    [SerializeField]
-    GameObject pistol;                         //player's pistol
+    [SerializeField] GameObject pistol;                         //player's pistol
 
-    float noOfBulletsInRoundRifle;   //number of bullets in the rifle's round
-    float noOfBulletsRifle;                        //number of bullets left besides the ones in the rifle
+    float noOfBulletsInRoundRifle;               //number of bullets in the rifle's round
+    float noOfBulletsRifle;                      //number of bullets left besides the ones in the rifle
     int maxNoOfBulletsInRoundRifle;              //the maximum number of bullets that a rifle round can have
 
-    [SerializeField]
-    GameObject rifle;                         //player's rifle
+    [SerializeField] GameObject rifle;                         //player's rifle
 
-    public static float noOfBulletsInRoundActive;   //number of bullets in the gun's round
-    float noOfBulletsActive;                        //number of bullets left besides the ones in the gun
-    int maxNoOfBulletsInRoundActive;              //the maximum number of bullets that a round can have
+    public static float noOfBulletsInRoundActive;       //number of bullets in the gun's round
+    float noOfBulletsActive;                            //number of bullets left besides the ones in the gun
+    int maxNoOfBulletsInRoundActive;                    //the maximum number of bullets that a round can have
 
-    GameObject activeGun;                      //player's active gun
+    GameObject activeGun;                        //player's active gun
 
     string activeGunString;
 
-    [SerializeField]
-    Animator animator;                      //player's animator
+    [SerializeField] Animator animator;                 //player's animator
 
-    int reloadTime;                         //how much it takes(in ms) to reload the gun
+    int reloadTime;                             //how much it takes(in ms) to reload the gun
 
     public int maxHealth = 100;
     public int currentHealth;
@@ -65,7 +53,7 @@ public class PlayerScript : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
 
-        //Set the bullet bounds
+        //Set the bullet number bounds
         noOfBulletsPistol = Mathf.Infinity;
         noOfBulletsInRoundPistol = 15;
         maxNoOfBulletsInRoundPistol = 15;
@@ -88,7 +76,6 @@ public class PlayerScript : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
 
         ammoText.text = noOfBulletsInRoundPistol.ToString() + "/" + "\u221E";
-
     }
 
     void Update()
@@ -108,7 +95,6 @@ public class PlayerScript : MonoBehaviour
         {
             ammoText.text = noOfBulletsInRoundActive.ToString() + "/" + "\u221E";
             noOfBulletsInRoundPistol = noOfBulletsInRoundActive;
-
         }
         else
         {
@@ -132,7 +118,7 @@ public class PlayerScript : MonoBehaviour
 
     void switchWeapon()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
         {
             noOfBulletsActive = noOfBulletsPistol;
             noOfBulletsInRoundActive = noOfBulletsInRoundPistol;
@@ -144,7 +130,8 @@ public class PlayerScript : MonoBehaviour
 
             pistol.SetActive(true);
             rifle.SetActive(false);
-        } else if (Input.GetKeyDown(KeyCode.Alpha2))
+        } 
+        else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
         {
             noOfBulletsActive = noOfBulletsRifle;
             noOfBulletsInRoundActive = noOfBulletsInRoundRifle;
@@ -193,8 +180,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            //resets player to the center of the map
-            transform.position = new Vector3(0, 1f, 0);
+            transform.position = new Vector3(0, 1f, 0);     //resets player to the center of the map
         }
     }
 
@@ -244,6 +230,7 @@ public class PlayerScript : MonoBehaviour
             else
             {
                 float max_bullets = maxNoOfBulletsInRoundActive - noOfBulletsInRoundActive;       //the maximum number of bullets that can be added in the round
+                
                 if (noOfBulletsActive <= max_bullets)
                 {
                     //noOfBulletsInRoundPistol += noOfBulletsPistol;
@@ -268,11 +255,12 @@ public class PlayerScript : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        //daca se atinge playerul de inamic ia damage - pt test
+        //daca se atinge playerul de inamic/glontul inamicului ia damage
         if (collision.gameObject.tag == "Enemy1")
         {
             TakeDamage(30);
-        } else if (collision.gameObject.tag == "EnemyBullet")
+        } 
+        else if (collision.gameObject.tag == "EnemyBullet")
         {
             TakeDamage(10);
         }
@@ -287,14 +275,14 @@ public class PlayerScript : MonoBehaviour
     public void addBullets(int num)
     {
         noOfBulletsRifle += num;
-	if (activeGunString == "rifle"){
-		noOfBulletsActive = noOfBulletsRifle;
-	}
+
+	    if (activeGunString == "rifle"){
+		    noOfBulletsActive = noOfBulletsRifle;
+	    }
     }
 
     public void addHealth(int num)
     {
         currentHealth = Mathf.Min(100, currentHealth + num);
     }
-
 }

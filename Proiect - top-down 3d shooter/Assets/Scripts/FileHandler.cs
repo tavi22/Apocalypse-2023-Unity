@@ -4,15 +4,12 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 
+
 public static class FileHandler
 {
-
     public static void SaveToJSON<T>(List<T> toSave, string filename)
     {
-        //Debug.Log(GetPath(filename));
-        Debug.Log(toSave.ToArray()[0]);
-        string content = JsonHelper.ToJson<T>(toSave.ToArray());
-        //Debug.Log(content);
+        string content = JsonHelper.ToJson(toSave.ToArray());
         WriteFile(GetPath(filename), content);
     }
 
@@ -34,7 +31,6 @@ public static class FileHandler
         List<T> res = JsonHelper.FromJson<T>(content).ToList();
 
         return res;
-
     }
 
     public static T ReadFromJSON<T>(string filename)
@@ -49,7 +45,6 @@ public static class FileHandler
         T res = JsonUtility.FromJson<T>(content);
 
         return res;
-
     }
 
     private static string GetPath(string filename)
@@ -77,6 +72,7 @@ public static class FileHandler
                 return content;
             }
         }
+
         return "";
     }
 }
@@ -101,6 +97,7 @@ public static class JsonHelper
     {
         Wrapper<T> wrapper = new Wrapper<T>();
         wrapper.Items = array;
+
         return JsonUtility.ToJson(wrapper, prettyPrint);
     }
 

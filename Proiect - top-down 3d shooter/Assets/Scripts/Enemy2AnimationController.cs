@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 
 public class Enemy2AnimationController : MonoBehaviour
 {
-    [SerializeField]
-    Animator animator;
-    Enemy2Script enemy2;
+    [SerializeField] Animator animator;
 
+    Enemy2Script enemy2;
 
     void Start()
     {
@@ -15,7 +13,6 @@ public class Enemy2AnimationController : MonoBehaviour
         enemy2 = gameObject.GetComponent("Enemy2Script") as Enemy2Script;
     }
 
-    // Update is called once per frame
     void Update()
     {
         HandleAnimationInput();
@@ -24,6 +21,7 @@ public class Enemy2AnimationController : MonoBehaviour
     void HandleAnimationInput()
     {
         animator.SetBool("isClose", Enemy2Script.isClose());
+
         animator.SetBool("isDead", enemy2.isDead());
         
         if (animator.GetBool("isDead") == true)
@@ -33,14 +31,14 @@ public class Enemy2AnimationController : MonoBehaviour
         }   
         else 
         {
-        if (animator.GetBool("isClose") == false)
-        {
-            animator.SetBool("isRunning", true);
-        }
-        else
-        {
-            animator.SetBool("isRunning", false);
-        } 
+            if (animator.GetBool("isClose") == false)
+            {
+                animator.SetBool("isRunning", true);
+            }
+            else
+            {
+                animator.SetBool("isRunning", false);
+            } 
         }
     }
 }

@@ -1,15 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 
 public class Enemy1Script : MonoBehaviour
 {
-    Transform target;                       // target object 
+    Transform target;                               // target object 
 
-    [SerializeField]
-    float movementSpeed = 2f;               // enemy movement speed
+    [SerializeField] float movementSpeed = 2f;      // enemy movement speed
 
-    static float distanceToPlayer=10.0f;          // distance between enemy and target
+    static float distanceToPlayer=10.0f;            // distance between enemy and target
 
     public int maxHealth = 100;
     public int currentHealth;
@@ -20,7 +18,6 @@ public class Enemy1Script : MonoBehaviour
 
     private bool pointAdded = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -33,7 +30,6 @@ public class Enemy1Script : MonoBehaviour
         playerScoreManager = playerCanvas.GetComponent<ScoreManager>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         healthBar.SetHealth(currentHealth);
@@ -41,7 +37,7 @@ public class Enemy1Script : MonoBehaviour
         MoveEnemy();
         distanceToPlayer = Vector3.Distance(transform.position, target.position);
 
-        // daca inamicul a murit, ii oprim miscarea (ca sa nu mai vina spre player in timpul animatiei de moarte)
+        // if the enemy has dies, we stop its movement(so that it won't follow the player after death)
         if (currentHealth <= 0)
         {
             movementSpeed = 0.0f;
@@ -51,7 +47,6 @@ public class Enemy1Script : MonoBehaviour
                 pointAdded = true;
                 Enemy1Spawner.noOfEnemiesAlive--;
             }
-
         }
     }
 
@@ -95,5 +90,4 @@ public class Enemy1Script : MonoBehaviour
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
     }
-
 }

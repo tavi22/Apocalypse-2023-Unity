@@ -1,15 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System.Threading.Tasks;
+
 
 public class PlayerAnimationController : MonoBehaviour
 {
-    [SerializeField]
-    Animator animator;              //player's animator
+    [SerializeField] Animator animator;              //player's animator
 
-    [SerializeField]
-    GameObject gun;                 //player's gun
+    [SerializeField] GameObject gun;                 //player's gun
 
     void Start()
     {
@@ -89,6 +85,5 @@ public class PlayerAnimationController : MonoBehaviour
 
         // The player is jumping when the ground check says that the player is not on the ground
         animator.SetBool("isJumping", !PlayerScript.getGrounded());
-        
     }
 }

@@ -1,13 +1,10 @@
 using System.Collections;
 using UnityEngine;
-using System;
-using System.Threading;
 
-using Random = UnityEngine.Random;
 
 public class Enemy2Spawner : MonoBehaviour
 {
-    [SerializeField] public GameObject Enemy2Prefab;
+    [SerializeField] GameObject Enemy2Prefab;
 
     Transform player;
 
@@ -54,7 +51,6 @@ public class Enemy2Spawner : MonoBehaviour
                 ranZ = -15;
             }
 
-
             Vector3 spawnPosition = new Vector3(player.position.x + ranX, 0.5f, player.position.x + ranZ);
 
             GameObject enemy = Instantiate(Enemy2Prefab, spawnPosition, Quaternion.identity);
@@ -65,7 +61,6 @@ public class Enemy2Spawner : MonoBehaviour
             enemy.transform.parent = _parent.transform;
 
             noOfEnemiesAlive++;
-
         }
 
         yield return new WaitForSeconds(7);

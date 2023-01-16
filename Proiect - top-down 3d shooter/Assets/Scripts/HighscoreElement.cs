@@ -1,15 +1,11 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Xml.Linq;
-using UnityEngine;
+
+
 [Serializable]
 public class HighscoreElement
 {
-
     public string name;
     public int score;
-
 
     public HighscoreElement(string pname, int score)
     {

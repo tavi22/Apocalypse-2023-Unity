@@ -1,29 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField]
-    Transform target;
+    [SerializeField] Transform target;
 
-    [SerializeField]
-    Vector3 targetOffset;           //distance offset from target to camera
+    [SerializeField] Vector3 targetOffset;                          //distance offset from target to camera
 
-    [SerializeField]
-    [Range(2f, 5f)]
-    float movementSpeed = 5f;       //camera movement speed
+    [SerializeField] [Range(2f, 5f)] float movementSpeed = 5f;      //camera movement speed
 
-    [SerializeField]
-    [Range(60f, 70f)]
-    float minFOV = 60f;             //max zoom in
+    [SerializeField] [Range(60f, 70f)] float minFOV = 60f;          //max zoom in
 
-    [SerializeField]
-    [Range(90f, 110f)]
-    float maxFOV = 100f;             //max zoom out
+    [SerializeField] [Range(90f, 110f)] float maxFOV = 100f;        //max zoom out
 
-    [SerializeField]
-    float zoomSensitivity = 10f;    //scroll sensitivity for zooming
+    [SerializeField] float zoomSensitivity = 10f;                   //scroll sensitivity for zooming
 
     void Update()
     {
@@ -41,8 +31,10 @@ public class CameraController : MonoBehaviour
     void HandleZoomInOut()
     {
         float fov = Camera.main.fieldOfView;
+
         fov += Input.GetAxis("Mouse ScrollWheel") * zoomSensitivity * -1;
         fov = Mathf.Clamp(fov, minFOV, maxFOV);
+
         Camera.main.fieldOfView = fov;
     }
 }

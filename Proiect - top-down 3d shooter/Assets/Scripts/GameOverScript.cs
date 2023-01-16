@@ -1,10 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 
 public class GameOverScript: MonoBehaviour
 {
@@ -20,9 +18,7 @@ public class GameOverScript: MonoBehaviour
     public string playerName;
     public string path = "";
     public string persistentPath = "";
-    private PlayerData playerData;
     public HighscoreHandler highscoreHandler;
-    
 
     void Start()
     {
@@ -45,14 +41,11 @@ public class GameOverScript: MonoBehaviour
             highScoreText.text = PlayerPrefs.GetInt("highscore").ToString();
             scoreText.text = score.ToString();
             playerName = inputName.text;
-
         }
     }
 
     public void LoadMenu()
     {
-        Debug.Log("Loading menu...");
-
         List<HighscoreElement> highscoreList = new List<HighscoreElement>();
         highscoreList.Add(new HighscoreElement(playerName, score));
         highscoreHandler.AddHighscoreIfPossible(new HighscoreElement(playerName, score));
@@ -63,9 +56,6 @@ public class GameOverScript: MonoBehaviour
 
     public void QuitGame()
     {
-        Debug.Log("Quitting game...");
         Application.Quit();
-        
     }
-
 }

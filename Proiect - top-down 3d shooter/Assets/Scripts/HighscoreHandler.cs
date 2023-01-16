@@ -1,7 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class HighscoreHandler : MonoBehaviour
 {
@@ -19,7 +18,6 @@ public class HighscoreHandler : MonoBehaviour
     public void LoadHighscores()
     {
         highscoreList = FileHandler.ReadListFromJSON<HighscoreElement>(filename);
-
 
         while (highscoreList.Count > maxCount)
         {
@@ -62,5 +60,4 @@ public class HighscoreHandler : MonoBehaviour
             }
         }
     }
-
 }

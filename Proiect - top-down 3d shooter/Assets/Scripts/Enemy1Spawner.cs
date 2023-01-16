@@ -1,13 +1,10 @@
-using System;
 using System.Collections;
-using System.Threading;
 using UnityEngine;
 
-using Random = UnityEngine.Random;
 
 public class Enemy1Spawner : MonoBehaviour
 {
-    [SerializeField] public GameObject Enemy1Prefab;
+    [SerializeField] GameObject Enemy1Prefab;
 
     Transform player;
 
@@ -33,7 +30,6 @@ public class Enemy1Spawner : MonoBehaviour
     {
         if (noOfEnemiesAlive < 20)
         {
-
             float ranX = Random.Range(-25, 25);
             float ranZ = Random.Range(-25, 25);
 
@@ -54,7 +50,6 @@ public class Enemy1Spawner : MonoBehaviour
             {
                 ranZ = -15;
             }
-
 
             Vector3 spawnPosition = new Vector3(player.position.x + ranX, 0.5f, player.position.x + ranZ);
 

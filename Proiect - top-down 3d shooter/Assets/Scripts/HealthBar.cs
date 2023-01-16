@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 
 public class HealthBar : MonoBehaviour
 {
@@ -9,9 +8,9 @@ public class HealthBar : MonoBehaviour
     public Image fill;
     private float maxHp;
     private float currentHp;
+
     public void SetMaxHealth(int health)
     {
-
         currentHp = health;
         maxHp = health;
 
@@ -24,8 +23,4 @@ public class HealthBar : MonoBehaviour
         fill.color = gradient.Evaluate(currentHp/maxHp);
         fill.fillAmount=currentHp / maxHp;
     }
-
-
-
-
 }

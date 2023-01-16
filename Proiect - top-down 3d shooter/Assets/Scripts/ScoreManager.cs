@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+
 public class ScoreManager : MonoBehaviour
 {
-
     public TextMeshProUGUI scoreText;
 
     public int score = 0;
@@ -15,24 +13,24 @@ public class ScoreManager : MonoBehaviour
     {
         highscore = PlayerPrefs.GetInt("highscore", 0);
         scoreText.text = score.ToString();
-
     }
 
     void Update()
     {
-        //metoda adaugat puncte de test
+        //metoda adaugat puncte
         if (Input.GetKeyDown(KeyCode.M))
             AddPoint();
-        //resetare high score de test
+
+        //resetare high score
         if (Input.GetKeyDown(KeyCode.N))
             PlayerPrefs.SetInt("highscore", 0);
     }
-
 
     public void AddPoint()
     {
         score += 1;
         scoreText.text = score.ToString();
+
         if (score>highscore)
             PlayerPrefs.SetInt("highscore",score);
     }
