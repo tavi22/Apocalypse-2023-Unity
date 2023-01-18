@@ -49,6 +49,9 @@ public class PlayerScript : MonoBehaviour
 
     public static bool isAlive = true;
 
+    bool isGodModeActive = false;
+    float noOfBulletsRifleGodMode;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -65,6 +68,8 @@ public class PlayerScript : MonoBehaviour
         noOfBulletsActive = Mathf.Infinity;
         noOfBulletsInRoundActive = 15;
         maxNoOfBulletsInRoundActive = 15;
+
+        noOfBulletsRifleGodMode = Mathf.Infinity;
 
         activeGun = pistol;
 
@@ -91,6 +96,8 @@ public class PlayerScript : MonoBehaviour
 
         switchWeapon();
 
+        activateGodMode();
+
         if(activeGunString == "pistol")
         {
             ammoText.text = noOfBulletsInRoundActive.ToString() + "/" + "\u221E";
@@ -98,9 +105,16 @@ public class PlayerScript : MonoBehaviour
         }
         else
         {
-            ammoText.text = noOfBulletsInRoundActive.ToString() + "/" + noOfBulletsRifle.ToString();
-            noOfBulletsInRoundRifle = noOfBulletsInRoundActive;
-            noOfBulletsRifle= noOfBulletsActive;
+            if (isGodModeActive)
+            {
+                ammoText.text = noOfBulletsInRoundActive.ToString() + "/" + "\u221E";
+            }
+            else
+            {
+                ammoText.text = noOfBulletsInRoundActive.ToString() + "/" + noOfBulletsRifle.ToString();
+                noOfBulletsInRoundRifle = noOfBulletsInRoundActive;
+                noOfBulletsRifle = noOfBulletsActive;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.B))
@@ -110,7 +124,7 @@ public class PlayerScript : MonoBehaviour
 
         healthBar.SetHealth(currentHealth);
 
-        if(currentHealth <= 0)
+        if (currentHealth <= 0)
         {
             isAlive = false;
         }
@@ -143,6 +157,24 @@ public class PlayerScript : MonoBehaviour
 
             pistol.SetActive(false);
             rifle.SetActive(true);
+        }
+    }
+
+    void activateGodMode()
+    {
+        if (Input.GetKeyDown(KeyCode.G) && !isGodModeActive)
+        {
+            isGodModeActive = true;
+            noOfBulletsActive = noOfBulletsRifleGodMode;
+        }
+        else if (Input.GetKeyDown(KeyCode.G) && isGodModeActive)
+        {
+            isGodModeActive = false;
+
+            if (activeGunString == "rifle")
+            {
+                noOfBulletsActive = noOfBulletsRifle;
+            }
         }
     }
 
@@ -256,11 +288,11 @@ public class PlayerScript : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         //daca se atinge playerul de inamic/glontul inamicului ia damage
-        if (collision.gameObject.tag == "Enemy1")
+        if (collision.gameObject.tag == "Enemy1" && !isGodModeActive)
         {
             TakeDamage(30);
         } 
-        else if (collision.gameObject.tag == "EnemyBullet")
+        else if (collision.gameObject.tag == "EnemyBullet" && !isGodModeActive)
         {
             TakeDamage(10);
         }

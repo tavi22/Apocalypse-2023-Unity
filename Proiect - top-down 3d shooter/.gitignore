@@ -79,3 +79,6 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 /ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json
+
+referencemap.xml
+referenceType2File.xml
